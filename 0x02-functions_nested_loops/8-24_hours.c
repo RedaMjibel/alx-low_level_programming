@@ -7,9 +7,9 @@
 void jack_bauer(void)
 {
 int h1, h2, m1, m2;
-for(h1 = 0; h1 <= 2; h1++)
+for (h1 = 0; h1 <= 2; h1++)
 {
-for(h2 = 0; h2 <= 9; h2++)
+for (h2 = 0; h2 <= 9; h2++)
 {
 if ((h1 <= 1 && h2 <= 9) || (h1 <= 2 && h2 <= 3))
 {
