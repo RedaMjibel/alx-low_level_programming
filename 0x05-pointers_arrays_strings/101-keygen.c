@@ -13,6 +13,6 @@ int main()
 int randp;
 srand(time(NULL));
 randp = rand();
-printf("Tada! Congrats %d\n", randp);
+printf("Tada! Congrats %s\n", randp);
 return (0);
 }
