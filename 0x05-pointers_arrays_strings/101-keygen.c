@@ -8,10 +8,14 @@
  * @dest: parameter
  * Return: random passowrd
  */
-int keygen(randp)
+int keygen(int randp)
 {
 srand(time(NULL));
 randp = rand(); 
 printf("Tada! Congrats");
-return (rand);
+return (randp);
+}
+int main()
+{
+return 0;
 }
