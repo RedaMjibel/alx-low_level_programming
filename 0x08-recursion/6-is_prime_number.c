@@ -13,7 +13,7 @@ int is_prime_number(int n)
 return (check_prime(n, 1));
 }
 /**
- * ckeck_prime - ckeck if number is prime
+ * check_prime - check if number is prime
  * @n: given integer
  * @i: number of iterations
  * Return: 1 if prime 0 else
