@@ -9,12 +9,9 @@
 
 int _pow_recursion(int x, int y)
 {
-int i = 1, m = 1;
 if (y < 0)
 return (-1);
-for (i = 1; i <= y; i++)
-{
-	m = m * x;
-}
-return (m);
+if (y == 0)
+	return (1);
+return (x * _power_recursion(x, y - 1));
 }
