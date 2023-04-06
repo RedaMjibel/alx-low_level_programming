@@ -10,9 +10,9 @@
  */
 int main()
 {
-int randp;
+char randp[84];
 srand(time(NULL));
-randp = rand();
+randp[84] = rand();
 printf("Tada! Congrats %s\n", randp);
 return (0);
 }
