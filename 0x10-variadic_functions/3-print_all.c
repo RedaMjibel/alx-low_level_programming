@@ -11,9 +11,8 @@
 
 void print_all(const char * const format, ...)
 {
-	int i = 0, n, y;
+	int i = 0, n;
 	float f;
-	char x;
 	char *z, *sep = "";
 	va_list args;
 
