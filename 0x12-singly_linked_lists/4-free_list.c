@@ -19,6 +19,7 @@ while (head != NULL)
 {
 	tmp = head;
 	head = head->next;
+	free(tmp->str);
 	free(tmp);
 }
 }
