@@ -14,12 +14,9 @@ int pop_listint(listint_t **head)
 	struct listint_s *temp;
 	int data;
 
-	if (head == NULL)
+	if (head == NULL || *head == NULL)
 	{
-		if (*head == NULL)
-		{
 		return (0);
-		}
 	}
 
 		data = (*head)->n;
