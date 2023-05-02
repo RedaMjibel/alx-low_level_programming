@@ -5,6 +5,7 @@
 /**
  * get_nodeint_at_index - delete a node
  * @head: double pointer to list
+ * @index: index
  *
  * Return: nothing
  */
