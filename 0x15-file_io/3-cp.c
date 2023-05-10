@@ -27,8 +27,7 @@ int main(int argc, char *argv[])
 	readf = read(ffrom, buff, 1024);
 	dest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	while (readf > 0)
-	{
+	do {
 		if (ffrom == -1 || readf == -1)
 		{
 			dprintf(STDERR_FILENO,
@@ -46,7 +45,7 @@ int main(int argc, char *argv[])
 		}
 		readf = read(ffrom, buff, 1024);
 		dest = open(argv[2], O_WRONLY | O_APPEND);
-	}
+	} while (readf > 0);
 	free(buff);
 	file_close(ffrom);
 	file_close(dest);
@@ -71,10 +70,6 @@ void file_close(int filedes)
 		exit(100);
 	}
 }
-
-#include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * buff_create - creates buffer with 1024 bytes of memory
