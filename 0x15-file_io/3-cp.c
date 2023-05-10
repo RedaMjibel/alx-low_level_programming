@@ -15,7 +15,7 @@ char *buff_create(char *fbuff);
 
 int main(int argc, char *argv[])
 {
-	int ffrom, readf, dest, writef, i;
+	int ffrom, readf, dest, writef;
 	char *buff;
 
 	if (argc != 3)
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 		}
 		readf = read(ffrom, buff, 1024);
 		dest = open(argv[2], O_WRONLY | O_APPEND);
-	} while (readf > 0)
+	} while (readf > 0);
 	free(buff);
 	file_close(ffrom);
 	file_close(dest);
