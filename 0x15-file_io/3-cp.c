@@ -14,7 +14,7 @@ void file_close(int filedes);
 
 int main(int argc, char *argv[])
 {
-	int ffrom, readf, dest, writef;
+	int ffrom, readf, dest, writef, i;
 	char *buff;
 
 	if (argc != 3)
@@ -27,7 +27,8 @@ int main(int argc, char *argv[])
 	readf = read(ffrom, buff, 1024);
 	dest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	do {
+	for (i = readf; i > 0; i--)
+	{
 		if (ffrom == -1 || readf == -1)
 		{
 			dprintf(STDERR_FILENO,
@@ -45,7 +46,7 @@ int main(int argc, char *argv[])
 		}
 		readf = read(ffrom, buff, 1024);
 		dest = open(argv[2], O_WRONLY | O_APPEND);
-	} while (readf > 0);
+	}
 	free(buff);
 	file_close(ffrom);
 	file_close(dest);
