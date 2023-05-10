@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 void file_close(int filedes);
+char *buff_create(char *fbuff);
 
 /**
  * main - copies the content of a file
