@@ -16,7 +16,7 @@ void print_binary(unsigned long int n)
 
 	for (i = 63; i >= 0; i--)
 	{
-		pos = n << i;
+		pos = n >> i;
 		if (pos & 1)
 		{
 			printf("1");
