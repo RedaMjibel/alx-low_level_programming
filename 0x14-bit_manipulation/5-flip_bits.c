@@ -19,7 +19,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	exc = n ^ m;
 	while (i >= 0)
 	{
-		num = exc >> j;
+		num = exc >> i;
 		if (num & 1)
 			j++;
 		i--;
