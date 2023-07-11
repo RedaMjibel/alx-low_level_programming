@@ -91,7 +91,7 @@ char *buff_create(char *fbuff)
 	if (buff == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", fbuff);
-		exit(98);
+		exit(99);
 	}
 	return (buff);
 }
