@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 	while (i || readf > 0)
 	{
 		i = 0;
-		if (ffrom == 0 || readf == 0)
+		if (ffrom == -1 || readf == -1)
 		{
 			dprintf(STDERR_FILENO,
 					"Error: Can't read from file %s\n", argv[1]);
