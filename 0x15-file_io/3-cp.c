@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		if (ffrom == 0 || readf == 0)
 		{
 			dprintf(STDERR_FILENO,
-					"Error: Can't read from file %s\n", argv[0]);
+					"Error: Can't read from file %s\n", argv[1]);
 			free(buff);
 			exit(98);
 		}
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 		if (dest == -1 || writef == -1)
 		{
 			dprintf(STDERR_FILENO,
-			"Error: Can't write to %s\n", argv[1]);
+			"Error: Can't write to %s\n", argv[2]);
 			free(buff);
 			exit(99);
 		}
