@@ -11,9 +11,31 @@ void print_magic(Elf64_Ehdr h)
 {
 	int i;
 
-	printf(" Magic:  ");
+	printf("  Magic:   ");
 	for (i = 0; i < EI_NIDENT; i++)
-		printf("%2.2x%s", h.e_ident[i], i == EI_NIDENT ? "\n" : " ");
+		printf("%2.2x%s", h.e_ident[i], i == EI_NIDENT - 1 ? "\n" : " ");
+}
+
+/**
+ * print_class - prints ELF class
+ * @h: the ELF header struct
+ */
+void print_class(Elf64_Ehdr h)
+{
+	printf("  Class:                             ");
+	switch (h.e_ident[EI_CLASS])
+	{
+		case ELFCLASS64:
+			printf("ELF64");
+		break;
+		case ELFCLASS32:
+			printf("ELF32");
+		break;
+		case ELFCLASSNONE:
+			printf("none");
+		break;
+	}
+	printf("\n");
 }
 
 /**
@@ -46,6 +68,7 @@ int main(int argc, char **argv)
 	else
 		dprintf(STDERR_FILENO, "Not ELF file: %s\n", argv[1]), exit(98);
 	print_magic(h);
+	print_class(h);
 	if (close(file))
 		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", file), exit(98);
 			return(EXIT_SUCCESS);
