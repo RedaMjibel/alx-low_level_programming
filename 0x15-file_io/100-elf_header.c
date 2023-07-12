@@ -4,6 +4,19 @@
 #include <stdlib.h>
 
 /**
+ * print_magic - prints ELF magic bytes
+ * @h: the ELF header struct
+ */
+void print_magic(Elf64_Ehdr h)
+{
+	int i;
+
+	printf(" Magic:  ");
+	for (i = 0; i < EI_NIDENT; i++)
+		printf("%2.2x%s", h.e_ident[i], i == EI_NIDENT ? "\n" : " ");
+}
+
+/**
  * main - entry point
  * @argc: argument count
  * @argv: argument value
@@ -32,8 +45,8 @@ int main(int argc, char **argv)
 	}
 	else
 		dprintf(STDERR_FILENO, "Not ELF file: %s\n", argv[1]), exit(98);
-	/*for (i = 0; i < (sizeof(h.e_ident[1])); i++)
-	dprintf(STDOUT_FILENO, "%s\n", h.e_ident[i]);*/
-			close(file);
+	print_magic(h);
+	if (close(file))
+		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", file), exit(98);
 			return(EXIT_SUCCESS);
 }
