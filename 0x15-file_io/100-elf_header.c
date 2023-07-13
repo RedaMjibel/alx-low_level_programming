@@ -66,6 +66,8 @@ void print_data(Elf64_Ehdr h)
 		case ELFDATANONE:
 			printf("none");
 			break;
+		default:
+			printf("<unknown: %x>\n",h.e_ident[EI_CLASS]);
 	}
 	printf("\n");
 }
