@@ -143,6 +143,43 @@ void print_abiversion(Elf64_Ehdr h)
 }
 
 /**
+ * print_type - prints the ELF type
+ * @h: the ELF header struct
+ */
+
+void print_type(Elf64_Ehdr h)
+{
+	char *p = (char *)&h.e_type;
+	int i = 0;
+
+	printf(" Type:                              ");
+	if (h.e_ident[EI_DATA] == ELFDATA2MSB)
+		i = 1;
+	switch(p[i])
+	{
+		case ET_NONE:
+			printf("NONE (None)");
+			break;
+		case ET_REL:
+			printf("REL (Relocatable file)");
+			break;
+		case ET_EXEC:
+			printf("EXEC (Executable file)");
+			break;
+		case ET_DYN:
+			printf("DYN (Shared object file)");
+			break;
+		case ET_CORE:
+			printf("CORE (Core file)");
+			break;
+		default:
+			printf("<unknown>: %x", p[i]);
+			break;
+	}
+	printf("\n");
+}
+
+/**
  * main - entry point
  * @argc: argument count
  * @argv: argument value
@@ -176,6 +213,7 @@ int main(int argc, char **argv)
 	print_version(h);
 	print_osabi(h);
 	print_abiversion(h);
+	print_type(h);
 	if (close(file))
 		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", file), exit(98);
 			return(EXIT_SUCCESS);
