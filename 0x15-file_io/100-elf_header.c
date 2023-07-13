@@ -132,6 +132,17 @@ void print_osabi_more(Elf64_Ehdr h)
 }
 
 /**
+ * print_abiversion - prints ELF ABI verion
+ * @h: the ELF header struct
+ */
+
+void print_abiversion(Elf64_Ehdr h)
+{
+	printf(" ABI Version:                       %d\n",
+			h.e_ident[EI_ABIVERSION]);
+}
+
+/**
  * main - entry point
  * @argc: argument count
  * @argv: argument value
