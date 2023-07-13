@@ -175,6 +175,7 @@ int main(int argc, char **argv)
 	print_class(h);
 	print_version(h);
 	print_osabi(h);
+	print_abiversion(h);
 	if (close(file))
 		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", file), exit(98);
 			return(EXIT_SUCCESS);
