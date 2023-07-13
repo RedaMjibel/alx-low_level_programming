@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void print_osabi_more(Elf64_Ehdr h);
+
 /**
  * print_magic - prints ELF magic bytes
  * @h: the ELF header struct
@@ -96,9 +98,37 @@ void print_osabi(Elf64_Ehdr h)
 			printf("UNIX - TRU64");
 			break;
 		default:
+			print_osabi_more(h);
 			break;
 	}
 	printf("\n");
+}
+
+/**
+ * print_osabi_more - prints more ELF osabi
+ * @h: the ELF header struct
+ */
+
+void print_osabi_more(Elf64_Ehdr h)
+{
+	switch (h.e_ident[EI_OSABI])
+	{
+		case ELFOSABI_MODESTO:
+			printf("Novell - Modesto");
+			break;
+		case ELFOSABI_OPENBSD:
+			printf("UNISX - OpenBSD");
+			break;
+		case ELFOSABI_STANDALONE:
+			printf("Standalone App");
+			break;
+		case ELFOSABI_ARM:
+			printf("ARM");
+			break;
+		default:
+			printf("<unknown: %x>", h.e_ident[EI_OSABI]);
+			break;
+	}
 }
 
 /**
@@ -133,6 +163,7 @@ int main(int argc, char **argv)
 	print_magic(h);
 	print_class(h);
 	print_version(h);
+	print_osabi(h);
 	if (close(file))
 		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", file), exit(98);
 			return(EXIT_SUCCESS);
