@@ -283,7 +283,7 @@ int main(int argc, char **argv)
 	print_abiversion(h);
 	print_type(h);
 	print_entry(h);
-	if (close(file))
+	if (close(file) == -1)
 		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n",
 				file), exit(98);
 			return (EXIT_SUCCESS);
