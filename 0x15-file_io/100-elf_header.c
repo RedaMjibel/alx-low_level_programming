@@ -141,7 +141,7 @@ void print_osabi_more(Elf64_Ehdr h)
 			printf("Novell - Modesto");
 			break;
 		case ELFOSABI_OPENBSD:
-			printf("UNISX - OpenBSD");
+			printf("UNIX - OpenBSD");
 			break;
 		case ELFOSABI_STANDALONE:
 			printf("Standalone App");
