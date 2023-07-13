@@ -59,6 +59,49 @@ void print_version(Elf64_Ehdr h)
 }
 
 /**
+ * print_osabi - prints ELF osabi
+ * @h: the ELF header struct
+ */
+
+void print_osabi(Elf64_Ehdr h)
+{
+	printf(" OS/ABI:                            ");
+	switch (h.e_ident[EI_OSABI])
+	{
+		case ELFOSABI_NONE:
+			printf("UNIX - System V");
+			break;
+		case ELFOSABI_HPUX:
+			printf("UNIX - HP-UX");
+			break;
+		case ELFOSABI_NETBSD:
+			printf("UNIX - NetBSD");
+			break;
+		case ELFOSABI_LINUX:
+			printf("UNIX - Linux");
+			break;
+		case ELFOSABI_SOLARIS:
+			printf("UNIX - Solarix");
+			break;
+		case ELFOSABI_AIX:
+			printf("UNIX - AIX");
+			break;
+		case ELFOSABI_IRIX:
+			printf("UNIX - IRIX");
+			break;
+		case ELFOSABI_FREEBSD:
+			printf("UNIX - FreeBSD");
+			break;
+		case ELFOSABI_TRU64:
+			printf("UNIX - TRU64");
+			break;
+		default:
+			break;
+	}
+	printf("\n");
+}
+
+/**
  * main - entry point
  * @argc: argument count
  * @argv: argument value
