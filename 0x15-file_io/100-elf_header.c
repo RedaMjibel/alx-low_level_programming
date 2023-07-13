@@ -13,6 +13,7 @@ void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
+void print_abi(unsigned char *e_ident);
 void print_type(unsigned int e_type, unsigned char *e_ident);
 void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
@@ -171,6 +172,16 @@ void print_osabi(unsigned char *e_ident)
 		default:
 			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 	}
+}
+
+/**
+ * print_abi - Prints the ABI version of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF ABI version.
+ */
+void print_abi(unsigned char *e_ident)
+{
+	printf("  ABI Version:                       %d\n",
+			e_ident[EI_ABIVERSION]);
 }
 
 /**
