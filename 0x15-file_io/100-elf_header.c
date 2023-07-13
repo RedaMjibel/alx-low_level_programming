@@ -7,16 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void check_elf(unsigned char *e_ident);
-void print_magic(unsigned char *e_ident);
-void print_class(unsigned char *e_ident);
-void print_data(unsigned char *e_ident);
-void print_version(unsigned char *e_ident);
-void print_osabi(unsigned char *e_ident);
-void print_abi(unsigned char *e_ident);
-void print_type(unsigned int e_type, unsigned char *e_ident);
-void print_entry(unsigned long int e_entry, unsigned char *e_ident);
-void close_elf(int elf);
 
 /**
  * check_elf - Checks if a file is an ELF file.
@@ -260,7 +250,8 @@ void close_elf(int elf)
  * @argv: An array of pointers to the arguments
  *
  * Return: 0 on success.
- * Description: If the file is not an ELF File or the function fails - exit code 98
+ * Description: If the file is not an ELF File or the function fails -
+ * exit code 98
  */
 
 int main(int __attribute__((__unused__)) argc, char *argv[])
@@ -272,7 +263,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 
 	if (o == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", 
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n",
 				argv[1]);
 		exit(98);
 	}
@@ -288,11 +279,9 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	r = read(o, header, sizeof(Elf64_Ehdr));
 	if (r == -1)
 	{
-		free(header);
-		close_elf(o);
+		free(header), close_elf(o);
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n",
-				argv[1]);
-		exit(98);
+				argv[1]), exit(98);
 	}
 	check_elf(header->e_ident);
 	printf("ELF Header:\n");
@@ -305,8 +294,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_type(header->e_type, header->e_ident);
 	print_entry(header->e_entry, header->e_ident);
 
-	free(header);
-	close_elf(o);
+	free(header), close_elf(o);
 	return (0);
 }
 
