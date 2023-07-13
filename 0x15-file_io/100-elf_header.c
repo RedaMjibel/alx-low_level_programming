@@ -1,7 +1,12 @@
 #include "main.h"
 #include <elf.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 
 void print_osabi_more(Elf64_Ehdr h);
 
@@ -36,6 +41,8 @@ void print_class(Elf64_Ehdr h)
 		case ELFCLASSNONE:
 			printf("none");
 		break;
+	default:
+		printf("<unknown: %x>\n", h.e_ident[EI_CLASS]);
 	}
 	printf("\n");
 }
