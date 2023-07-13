@@ -207,7 +207,7 @@ void print_type(Elf64_Ehdr h)
  * @h: the ELF header struct
  */
 
-void pirnt_entry(Elf64_Ehdr h)
+void print_entry(Elf64_Ehdr h)
 {
 	int i = 0, len = 0;
 	unsigned char *p = (unsigned char *)&h.e_entry;
@@ -215,7 +215,7 @@ void pirnt_entry(Elf64_Ehdr h)
 	printf("  Entry point address:               0x");
 	if (h.e_ident[EI_DATA] != ELFDATA2MSB)
 	{
-		i = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 2;
+		i = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
 		while (!p[i])
 			i--;
 		printf("%x", p[i--]);
@@ -273,6 +273,7 @@ int main(int argc, char **argv)
 	print_osabi(h);
 	print_abiversion(h);
 	print_type(h);
+	print_entry(h);
 	if (close(file))
 		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", file), exit(98);
 			return(EXIT_SUCCESS);
