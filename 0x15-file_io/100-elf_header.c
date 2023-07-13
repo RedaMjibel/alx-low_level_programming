@@ -67,7 +67,7 @@ void print_data(Elf64_Ehdr h)
 			printf("none");
 			break;
 		default:
-			printf("<unknown: %x>\n",h.e_ident[EI_CLASS]);
+			printf("<unknown: %x>\n", h.e_ident[EI_CLASS]);
 	}
 	printf("\n");
 }
