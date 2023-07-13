@@ -40,6 +40,29 @@ void print_class(Elf64_Ehdr h)
 	printf("\n");
 }
 
+/**
+ * print_data - prints ELF data
+ * @h: the ELF header struct
+ */
+
+void print_data(Elf64_Ehdr h)
+{
+	printf(" Data:                              ");
+	switch (h.e_ident[EI_DATA])
+	{
+		case ELFDATA2MSB:
+			printf("2's complement, big endian");
+			break;
+		case ELFDATA2LSB:
+			printf("2's complement, little endian");
+			break;
+		case ELFDATANONE:
+			printf("none");
+			break;
+	}
+	printf("\n");
+}
+
 /** print_version - prints ELF version
  * @h: the ELF header stuct
  */
