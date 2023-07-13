@@ -38,6 +38,26 @@ void print_class(Elf64_Ehdr h)
 	printf("\n");
 }
 
+/** print_version - prints ELF version
+ * @h: the ELF header stuct
+ */
+
+void print_version(Elf64_Ehdr h)
+{
+	printf("  Version:                           %d", h.e_ident[EI_VERSION]);
+	switch (h.e_ident[EI_VERSION])
+	{
+		case EV_CURRENT:
+			printf(" (current)");
+		break;
+		case EV_NONE:
+			printf("%s", "");
+		break;
+		break;
+	}
+	printf("\n");
+}
+
 /**
  * main - entry point
  * @argc: argument count
@@ -69,6 +89,7 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Not ELF file: %s\n", argv[1]), exit(98);
 	print_magic(h);
 	print_class(h);
+	print_version(h);
 	if (close(file))
 		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", file), exit(98);
 			return(EXIT_SUCCESS);
