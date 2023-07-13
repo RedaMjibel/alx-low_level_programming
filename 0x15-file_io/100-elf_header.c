@@ -203,6 +203,41 @@ void print_type(Elf64_Ehdr h)
 }
 
 /**
+ * print_entry - prints the ELF entry poinrt adress
+ * @h: the ELF header struct
+ */
+
+void pirnt_entry(Elf64_Ehdr h)
+{
+	int i = 0, len = 0;
+	unsigned char *p = (unsigned char *)&h.e_entry;
+
+	printf("  Entry point address:               0x");
+	if (h.e_ident[EI_DATA] != ELFDATA2MSB)
+	{
+		i = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 2;
+		while (!p[i])
+			i--;
+		printf("%x", p[i--]);
+		for (; i >= 0; i--)
+			printf("%02x", p[i]);
+		printf("\n");
+	}
+	else
+	{
+		i = 0;
+		len = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
+		while (!p[i])
+			i++;
+		printf("%x", p[i++]);
+		for (; i<= len; i++)
+			printf("%02x", p[i]);
+		printf("\n");
+		
+	}
+}
+
+/**
  * main - entry point
  * @argc: argument count
  * @argv: argument value
