@@ -63,7 +63,8 @@ void print_data(Elf64_Ehdr h)
 	printf("\n");
 }
 
-/** print_version - prints ELF version
+/**
+ * print_version - prints ELF version
  * @h: the ELF header stuct
  */
 
@@ -178,7 +179,7 @@ void print_type(Elf64_Ehdr h)
 	printf("  Type:                              ");
 	if (h.e_ident[EI_DATA] == ELFDATA2MSB)
 		i = 1;
-	switch(p[i])
+	switch (p[i])
 	{
 		case ET_NONE:
 			printf("NONE (None)");
@@ -230,10 +231,9 @@ void print_entry(Elf64_Ehdr h)
 		while (!p[i])
 			i++;
 		printf("%x", p[i++]);
-		for (; i<= len; i++)
+		for (; i <= len; i++)
 			printf("%02x", p[i]);
 		printf("\n");
-		
 	}
 }
 
@@ -275,6 +275,7 @@ int main(int argc, char **argv)
 	print_type(h);
 	print_entry(h);
 	if (close(file))
-		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", file), exit(98);
-			return(EXIT_SUCCESS);
+		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n"
+				, file), exit(98);
+			return (EXIT_SUCCESS);
 }
