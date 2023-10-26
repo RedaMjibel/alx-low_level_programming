@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Documentation """
 
-
 def island_perimeter(grid):
     """returns the perimeter of the island described in grid"""
     perimeter = 0
@@ -18,6 +17,7 @@ def island_perimeter(grid):
                     if (
                             c_row < 0
                             or c_row >= rows
+                            or c_col < 0
                             or c_col >= cols
                             or grid[c_row][c_col] == 0
                     ):
