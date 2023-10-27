@@ -1,6 +1,9 @@
 CC = gcc
 SRC = main.c school.c
 NAME = school
+ifneq (1, $(words $(NAME) $(filter $(NAME), $(.VARIABLES))))
+    $(error The 'NAME' variable must be used only once in the Makefile and set to 'school')
+endif
 RM =rm -f
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Werror -Wextra -pedantic
