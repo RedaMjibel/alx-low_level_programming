@@ -26,3 +26,4 @@ re: fclean all
 $(OBJ): m.h
 
 .PHONY: m.h
+	@test -f m.h || (echo "m.h is missing"; false)
