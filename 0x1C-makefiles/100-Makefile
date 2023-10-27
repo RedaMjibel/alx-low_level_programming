@@ -5,6 +5,8 @@ RM =rm -f
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
+OBJ = $(patsubst %.c, %.o, $(SRC))
+
 .PHONY: all clean oclean fclean re
 
 all: $(OBJ)
