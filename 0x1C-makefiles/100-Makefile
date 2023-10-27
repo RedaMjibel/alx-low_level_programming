@@ -24,3 +24,6 @@ re: fclean all
 
 m.h:
 	@test -f m.h || false
+
+%.o: %.c m.h
+	$(CC) $(CFLAGS) -c $< -o $@
